@@ -1,5 +1,14 @@
+:root {
+    --header-h: 120px;
+}
+
 html {
     box-sizing: border-box;
+    /* odkazy z menu (#o_nas, #povolenky...) nezajedou pod pevnou hlavičku */
+    scroll-padding-top: var(--header-h);
+    /* iOS Safari nezvětšuje text při otočení na šířku */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 *, ::before, ::after {
@@ -7,18 +16,25 @@ html {
 }
 
 header {
-    height: 100px;
+    height: var(--header-h);
     width: 100%;
     padding: 0 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    overflow: hidden;
     position: fixed;
     top: 0;
+    left: 0;
+    z-index: 100;
     border-bottom: 1px solid #ddd;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#image_navbar {
+    display: block;
+    height: 110px;
+    width: auto;
 }
 
 .menu {
@@ -38,77 +54,103 @@ header {
     padding: 20px;
     text-decoration: none;
     font-family: "Pontano Sans", sans-serif;
-    font-size: 25px;
+    font-size: 22px;
     display: flex;
     border-bottom: 2px solid transparent;
     transition: border-color 0.4s, border-width 0.3s;
 }
 
-.button:hover {
-    border-color: rgb(152, 152, 152);
+@media (hover: hover) {
+    .button:hover {
+        border-color: rgb(152, 152, 152);
+    }
 }
 
-div > .button:hover {
-    border-color: transparent;
-}
-
-/* Style for the menu toggle button */
+/* Tlačítko menu (☰) – na počítači schované */
 .menu-toggle {
-    display: none; /* Hidden by default */
+    display: none;
     background: none;
     border: none;
-    font-size: 24px;
+    padding: 0;
+    color: #000; /* Safari na iPhonu by jinak tlačítko obarvil modře */
+    font-size: 28px;
+    line-height: 1;
     cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* Media query for screens with max-width 1100px */
+/* Menu pro velký tablet / menší notebook – položky trochu blíž k sobě */
 @media screen and (max-width: 1100px) {
-    .menu {
-        display: none;
-        position:absolute;
-        background-color: white;
-        flex-direction: column;
-        top: 100px; 
-        border: 1px solid #ccc;
-        width: calc(100vw - 60px);
-    }
-
-    .higher{
-        height: 80vh;
-        overflow: scroll;
-        flex-direction: column;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
     .menu li {
-        margin: 10px 0; 
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 0;
     }
 
-    .button_link{
-        text-align: center;
+    .button {
+        padding: 20px 14px;
+        font-size: 20px;
+    }
+}
+
+/* Mobil a tablet na výšku – menu schované pod ☰ */
+@media screen and (max-width: 900px) {
+    :root {
+        --header-h: 80px;
+    }
+
+    header {
+        padding: 0 20px;
+    }
+
+    #image_navbar {
+        height: 72px;
     }
 
     .menu-toggle {
-        display:flex;
-        position: absolute;
-        right: 30px;
-        padding-top: 20px;
-    }
-
-    header{
-        align-items: flex-start;
-        height: 80px;
-    }
-
-    .active{
         display: flex;
+        align-items: center;
         justify-content: center;
-        margin-left: auto;
-        margin-right: auto;
+        width: 44px;
+        height: 44px;
+        margin-right: -8px;
+    }
+
+    .menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        padding: 10px 0 15px;
+        background-color: #fff;
+        border-bottom: 1px solid #ddd;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08);
+        max-height: calc(100vh - var(--header-h));
+        max-height: calc(100svh - var(--header-h));
+        overflow-y: auto;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .menu li {
+        margin: 0;
+    }
+
+    .button {
+        padding: 0;
+        border-bottom: none;
+        justify-content: center;
+    }
+
+    .button__link {
+        display: block;
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 20px;
+        text-align: center;
     }
 }
-
-

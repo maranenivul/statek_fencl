@@ -10,14 +10,16 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
-
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
 
 </head>
 <body>
-      <header class = "">
+      <header>
         <div>
-            <a class="button" href="index.html#uvod">STATEK FENCL</a>
-    
+        <div>
+    	    <a href="index.html#uvod"><img src="images/Statek_FENCL_logo_small.jpg" id="image_navbar" alt="Statek Fencl"></a>
+        </div>
         </div>
         <ul class="menu" id="menu">
             <li class="button"><a class="button__link" href="index.html#o_nas">O Nás</a></li>
@@ -25,24 +27,39 @@
             <li class="button"><a class="button__link" href="index.html#rybarsky_rad">Rybářský řád</a></li>
             <li class="button"><a class="button__link" href="index.html#kontakty">Kontakty</a></li>
         </ul>
-        <button class="menu-toggle" id="menu-toggle">☰</button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Menu" aria-controls="menu" aria-expanded="false">☰</button>
     </header>
     
     <main >
         <div class="main">
         
             <section id="rad_cely">
-                    <h2>Celý řád</h2>
+                    <h2>Rybářský řád</h2>
                     <div class="o_nas_cely__center text_center">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur pellentesque nibh nibh, at maximus ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales. Quisque sagittis orci ut diam condimentum, vel euismod erat placerat. In iaculis arcu eros, eget tempus orci facilisis id.</p>
-
-
+                        
                         <!-- kod dole použij pro odrážkový seznam jestli budeš potřebovat :) -->
                         <div class="text_center">
                             <ul>
+				<h4 align=left><b>Vyjmenované ryby</b> které si může lovící ponechat a jejich stanovená minimální a maximální délka:</h4>
                                 <!-- značka <li></li> je jedna tečka, co napíšeš mezi ty tagy, tak to se zobrazí, ale to ti asi už došlo :D  -->
-                                <li>Ahoj</li>
-                                <li>sem napiš co chceš aby bylo vidět</li>
+                               
+				<li>Kapr 45-65 cm</li>
+				<li>Štika od 60 cm</li>
+				<li>Lín od 25 cm</li>
+				<li>Amur 60-80 cm</li>
+			    	<h3 align=left><b>Pravidla:</b></h3>
+				<li>Při ulovení a ponechání si ryby je lovící povinen neprodleně zaslat druh a délku na email <a href="mailto:info@statekfencl.cz">info@statekfencl.cz</a>.</li>
+				<li>Lovící je před započetím lovu povinen se seznámit s pravidly rybolovu.</li>
+                                <li>Osoby mladší 15 let mohou lovit jen v doprovodu zodpovědné dospělé osoby.</li>
+				<li>Ulovené ryby, pokud si je lovící neponechá, je povinen neprodleně vrátit zpět do vody.</li>
+				<li>S rybami je vždy nutno zacházet šetrně!</li>
+				<li>Každý lovící na položenou, nebo plavanou smí používat pouze dva pruty o maximálně dvou návazcích s jednoháčky na jednom prutu.</li>
+				<li>Zákaz lovu na srkačku.</li>
+				<li>Držitel oprávnění k lovu je povinen před započetím i po ukončení lovu provést úklid místa kde lovil a jeho okolí.</li>
+				<li>Kontrolní činnost provádí Statek Fencl s.r.o.</li>
+				<li>Při kontrole je lovící povinen se prokázat platnou povolenkou k lovu a průkazem totožnosti.</li>
+				<li>Majitelům zakoupených povolenek k lovu může být při porušení pravidel k lovu povolenka odebrána pověřenou osobou na místě bez náhrady.</li>
+				    <h4><b>Zakoupením povolenky lovící souhlasí s rybářským řádem a je povinen ho respektovat.</b></h4>
                             </ul>
                         </div>
                         
@@ -55,8 +72,7 @@
         <p>
             Statek Fencl s.r.o.<br>
             <br>
-            Jarošov nad Nežárkou 9<br>
-            378 41<br><br>
+            Jarošov nad Nežárkou 9, 378 41<br><br>
         </p>
         <div>
             <div>
@@ -72,28 +88,21 @@
 
     
 <script>
-    document.getElementById('menu-toggle').addEventListener('click', function () {
-        var menu = document.getElementById('menu');
-        var header = document.querySelector('header');
-        header.classList.toggle('higher');
-        menu.classList.toggle('active');
+    var menu = document.getElementById('menu');
+    var toggle = document.getElementById('menu-toggle');
+
+    toggle.addEventListener('click', function () {
+        var open = menu.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
-    var buttons = document.querySelectorAll('.button__link');
-
-    buttons.forEach(function(button) {
-        button.addEventListener('click', function () {
-            var menu = document.getElementById('menu');
-            var header = document.querySelector('header');       
-            
-            header.classList.toggle('higher');
-            
-            menu.classList.toggle('active');
-            
-            console.log('done');
+    // po kliknutí na odkaz se menu zavře
+    document.querySelectorAll('.button__link').forEach(function (link) {
+        link.addEventListener('click', function () {
+            menu.classList.remove('active');
+            toggle.setAttribute('aria-expanded', 'false');
         });
     });
-
 </script>
 </body>
 </html>

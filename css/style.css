@@ -1,178 +1,202 @@
-body{
-    width: 100vw;
-    margin: 0px;
+body {
+    width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+    background-color: #fff;
+    color: #000;
 }
 
-p{
-    padding:0px;
-    margin:0px;
+/* obsah začíná pod pevnou hlavičkou */
+main {
+    padding-top: var(--header-h);
+}
+
+img {
+    max-width: 100%;
+}
+
+p {
+    padding: 0;
+    margin: 0;
     font-family: "Pontano Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 15px;
+    line-height: 1.5;
     font-style: normal;
 }
 
-
-h2{
+h2 {
     font-family: "Pontano Sans", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 700 ;
+    font-weight: 700;
     font-size: 50px;
     font-style: normal;
     padding-top: 80px;
-
 }
 
-h3, h4{
+h3, h4 {
     font-family: "Pontano Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 700;
     font-size: 20px;
-    font-style: normal; 
+    font-style: normal;
 }
 
-h4{
+h4 {
     padding-top: 30px;
-    margin:0px;
+    margin: 0;
     font-weight: 500;
     font-size: 15px;
 }
 
-
-ul{
-    margin-top:0px;
+ul {
+    margin-top: 0;
     padding-right: 10px;
 }
 
-li{
+li {
     text-decoration: none;
     text-align: left;
     font-family: "Pontano Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-size: 15px;
-    font-style: normal; 
-   
+    line-height: 1.5;
+    font-style: normal;
 }
 
-a{
+a {
     text-decoration: none;
-    color:rgb(136, 136, 136);
-    text-transform: uppercase;
-    
+    color: rgb(136, 136, 136);
 }
 
-section, footer{
-    min-height: 75vh;
-    width: 100vw;
+ul p {
+    text-align: left;
+}
+
+section, footer {
+    width: 100%;
     display: flex;
     flex-direction: column;
     text-align: center;
     justify-content: center;
-    padding-bottom: 50px;
 }
 
-#uvod{
-    height: 90vh;
+section {
+    min-height: 75vh;
+    padding: 0 20px 50px;
 }
 
-#uvod img{
-    width:100vw;
+/* Úvodní fotka */
+#uvod {
+    height: calc(90vh - var(--header-h));
+    /* na tabletu na výšku ať fotka není zbytečně vysoká */
+    height: min(calc(90vh - var(--header-h)), 70vw);
+    min-height: 300px;
+    padding: 0;
+}
+
+#uvod img {
+    display: block;
+    width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-#o_nas_cely img{
+#o_nas_cely img {
     width: 100%;
     object-fit: cover;
 }
 
-
-.o_nas__center, .rybarsky_rad__center, .o_nas_cely__center{
+/* Bloky fotka + text */
+.o_nas__center, .rybarsky_rad__center, .o_nas_cely__center {
     display: flex;
     justify-content: center;
-    height: 300px;
-    width: 700px;
+    gap: 100px;
+    width: 100%;
+    max-width: 700px;
     text-align: left;
     margin-left: auto;
     margin-right: auto;
 }
 
-.o_nas_cely__center{
-    height: fit-content;
+.o_nas_cely__center {
+    margin-bottom: 30px;
 }
 
-
-.o_nas__center-right{
-    display:flex;
+.o_nas__center-right, .rybarsky_rad__center-left {
+    flex: 1;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 300px;
+    gap: 20px;
+    min-height: 300px;
 }
 
-.o_nas__center>img, .rybarsky_rad__center>img{
-    display:block;
+.rybarsky_rad__center-left {
+    text-align: right;
+}
+
+.o_nas__center > img, .rybarsky_rad__center > img {
+    display: block;
+    flex-shrink: 0;
     width: 300px;
     height: 300px;
     object-fit: cover;
-    margin-right: 100px;
 }
 
-#povolenky{
+#povolenky {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.rybarsky_rad__center>img{
-    margin-right: 0px;
-    margin-left: 100px;
-}
-
-.button_small{
+.button_small {
     text-align: center;
     padding-bottom: 5px;
     text-decoration: none;
     font-family: "Pontano Sans", sans-serif;
     font-size: 20px;
-    display:flex;
+    display: flex;
     flex-direction: row;
     border-bottom: 2px solid transparent;
     transition: border-color 0.4s, border-width 0.3s;
 }
 
-.button_small:hover{
-    border-color: rgb(152, 152, 152);
+@media (hover: hover) {
+    .button_small:hover {
+        border-color: rgb(152, 152, 152);
+    }
 }
 
-.rybarsky_rad__center-left{
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 300px;
-    text-align: right;
-}
-
-.rybarsky_rad__center-left .button_small{
+.rybarsky_rad__center-left .button_small {
     flex-direction: row-reverse;
 }
 
-.povolenka{
-    width: 300px;
-    height: 300px;
-    border: 2px solid black;
+/* Povolenky */
+.povolenky {
     display: flex;
-    flex-direction: column;
-    justify-content:space-between;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-}
-
-.povolenky{
-    display: flex;
+    flex-wrap: wrap;
     gap: 100px;
     justify-content: center;
 }
 
-.text_center{
+.povolenka {
+    width: 300px;
+    max-width: 100%;
+    min-height: 300px;
+    padding-bottom: 10px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+#povolenky > h3 {
+    margin-top: 40px;
+}
+
+.text_center {
     text-align: center !important;
     display: flex;
     flex-direction: column;
@@ -181,89 +205,103 @@ section, footer{
 }
 
 
-@media screen and (max-width:1100px){
-    body{
-        max-width: 100vw;
-        margin: 0px;
+/* ---------- Tablet ---------- */
+@media screen and (max-width: 900px) {
+    section {
+        min-height: 0;
+        padding-bottom: 70px;
     }
 
-    h1{
-        font-size: 30px;
+    h2 {
+        font-size: 40px;
+        padding-top: 50px;
     }
 
-    h2{
-        font-size: 20px;
+    .o_nas__center, .rybarsky_rad__center {
+        gap: 40px;
     }
 
-    h3, h4{
-        font-size: 15px;
+    .o_nas__center > img, .rybarsky_rad__center > img {
+        width: 260px;
+        height: 260px;
     }
 
-    a{
-        font-size: 15px;
-    }
-    
-    li{
-        font-size: 12px;
+    .o_nas__center-right, .rybarsky_rad__center-left {
+        min-height: 260px;
     }
 
-    p{
-        font-size: 12px;
-        text-align: center;
-        padding:20px;
-        height: auto;
+    .povolenky {
+        gap: 40px;
     }
-
-    .povolenky, .o_nas__center, .rybarsky_rad__center, .o_nas_cely__center{
-        flex-direction: column;
-        margin-left: auto;
-        margin-right: auto;
-        height: auto;
-        max-width: 100vw;
-        margin-bottom: 10vh;
-    }
-
-    .o_nas_cely__center{
-        height: fit-content;
-    }
-
-    .button_small{
-        display: block;
-        font-size: 15px;
-    }
-
-    .rybarsky_rad__center, .rybarsky_rad__center-left, .o_nas__center, .o_nas__center-right{
-        width: 60vw;
-        height: auto;
-        margin-left: auto;
-        margin-right: auto;
-
-    }
-
-    .image_small{
-        display:none !important;
-    }
-
-    section{
-        width: 100vw;
-        height: auto;
-        padding: 0px;
-    }
-
-    #uvod{
-        min-height: 50vh !important;
-        max-height: 50vh;
-
-    }
-
-    #uvod>img{
-        height: 50vh;
-        
-    }
-    
-
-
-   
 }
 
 
+/* ---------- Mobil ---------- */
+@media screen and (max-width: 700px) {
+    section {
+        min-height: 0;
+        padding: 0 20px 60px;
+    }
+
+    h2 {
+        font-size: 32px;
+        padding-top: 30px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    #uvod {
+        height: 50vh;
+        height: 50svh;
+        min-height: 240px;
+        padding: 0;
+    }
+
+    /* fotka nad textem, vše pod sebou */
+    .o_nas__center, .rybarsky_rad__center {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        max-width: 480px;
+    }
+
+    .o_nas__center > img, .rybarsky_rad__center > img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    .rybarsky_rad__center > img {
+        order: -1;
+    }
+
+    .o_nas__center-right, .rybarsky_rad__center-left {
+        min-height: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .button_small,
+    .rybarsky_rad__center-left .button_small {
+        display: inline-block;
+        font-size: 18px;
+    }
+
+    .o_nas_cely__center {
+        margin-bottom: 20px;
+    }
+
+    /* seznam v rybářském řádu – menší odsazení odrážek */
+    .o_nas_cely__center ul {
+        padding-left: 20px;
+        padding-right: 0;
+    }
+
+    .povolenka {
+        width: 100%;
+        max-width: 340px;
+    }
+}
